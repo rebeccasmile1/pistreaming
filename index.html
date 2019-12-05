@@ -59,14 +59,26 @@
 
 
     <script>
-            let canvas = document.getElementById("videoCanvas");
-            let img = document.createElement("img");
-            let ctx = canvas.getContext("2d");
+            let canvas = document.getElementById('videoCanvas');
+            let img = document.createElement('img');
+            let ctx = canvas.getContext('2d');
             function captureVideo() {
-              ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height);
+              ctx.drawImage(canvas, 0, 0, canvas.width/2-30, canvas.height/3);
               img.src = canvas.toDataURL();
               document.body.append(img);
             }
-          </script>
+    </script>
+
+
+<!--    <script>-->
+<!--            let canvas = document.getElementById("videoCanvas");-->
+<!--            let img = document.createElement("img");-->
+<!--            let ctx = canvas.getContext("2d");-->
+<!--            function captureVideo() {-->
+<!--              ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height);-->
+<!--              img.src = canvas.toDataURL();-->
+<!--              document.body.append(img);-->
+<!--            }-->
+<!--    </script>-->
 </body>
 </html>
