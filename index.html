@@ -32,8 +32,10 @@
 	</canvas>
 	<table>
 		<tr>
-		<td><input type="button" onClick="btnclick()" value="Button1"/></td>
-		<td><input type="button" onClick="captureVideo()" value="Button2"/></td>
+			<td><input type="button" onClick="captureVideo()" value="screenshot"/></td>
+
+<!--		<td><input type="button" onClick="btnclick()" value="Button1"/></td>-->
+<!--		<td><input type="button" onClick="captureVideo()" value="Button2"/></td>-->
 		</tr>
 	</table>
 
@@ -61,6 +63,7 @@
     <script>
             var canvas = document.getElementById('videoCanvas');
             var img = document.createElement('img');
+
             var ctx = canvas.getContext('2d');
             function captureVideo() {
               ctx.drawImage(canvas, 0, 0, canvas.width/2-30, canvas.height/3);
