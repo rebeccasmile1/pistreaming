@@ -74,11 +74,8 @@
               img.id='img'+index;
 
               document.body.append(img);
-              downloadImage(img,'img'=index);
+              downloadImage(img,'img'+index);
               index+=1;
-
-
-
             }
             function downloadImage(img,name){
             	var a=document.createElement("a");
