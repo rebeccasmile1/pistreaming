@@ -72,9 +72,19 @@
 
               img.src = canvas.toDataURL();
               img.id='img'+index;
-              index+=1;
-              document.body.append(img);
 
+              document.body.append(img);
+              downloadImage(img,'img'=index);
+              index+=1;
+
+
+
+            }
+            function downloadImage(img,name){
+            	var a=document.createElement("a");
+            	a.href=img.src;
+            	a.download=name;
+            	a.click();
             }
     </script>
 
