@@ -12,6 +12,7 @@ from time import sleep, time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from wsgiref.simple_server import make_server
 
+
 import picamera
 from ws4py.websocket import WebSocket
 from ws4py.server.wsgirefserver import (
@@ -20,6 +21,12 @@ from ws4py.server.wsgirefserver import (
     WebSocketWSGIRequestHandler,
 )
 from ws4py.server.wsgiutils import WebSocketWSGIApplication
+
+from flask import Flask
+
+app=Flask(__name__)
+
+
 
 ###########################################
 # CONFIGURATION
@@ -127,9 +134,14 @@ class BroadcastThread(Thread):
                     break
         finally:
             self.converter.stdout.close()
-
+@app.route('/picture')
+def take():
+    os.system('cd ../pylepton')
+    os.system('./pylepton_capture rechengxiang.jpg')
+    return 'OK!'
 
 def main():
+    app.run()
     print('Initializing camera')
     with picamera.PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
