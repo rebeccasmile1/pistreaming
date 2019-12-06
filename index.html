@@ -66,7 +66,7 @@
 
             var ctx = canvas.getContext('2d');
             function captureVideo() {
-              ctx.drawImage(canvas, 0, 0, canvas.width/2-30, canvas.height/3);
+              ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height);
               img.src = canvas.toDataURL();
               document.body.append(img);
             }
