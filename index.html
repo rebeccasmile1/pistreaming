@@ -65,10 +65,14 @@
             var img = document.createElement('img');
 
             var ctx = canvas.getContext('2d');
+            var index=0
             function captureVideo() {
               ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height);
               img.src = canvas.toDataURL();
+              img.id=index
+              index+=1
               document.body.append(img);
+
             }
     </script>
 
