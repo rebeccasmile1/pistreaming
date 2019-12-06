@@ -68,10 +68,10 @@
             var index=0
             function captureVideo() {
               ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height);
-              var img = document.createElement('img'+index);
+              var img = document.createElement('img');
 
               img.src = canvas.toDataURL();
-<!--              img.id='img'+index;-->
+              img.id='img'+index;
               index+=1;
               document.body.append(img);
 
