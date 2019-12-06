@@ -136,7 +136,7 @@ class BroadcastThread(Thread):
             self.converter.stdout.close()
 @app.route('/picture')
 def take():
-    os.system('cd ../../pylepton')
+    os.system('cd ../pylepton')
     os.system('./pylepton_capture rechengxiang.jpg')
     return 'OK!'
 
