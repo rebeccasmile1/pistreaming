@@ -22,9 +22,9 @@ from ws4py.server.wsgirefserver import (
 )
 from ws4py.server.wsgiutils import WebSocketWSGIApplication
 
-from flask import Flask
-
-app=Flask(__name__)
+# from flask import Flask
+#
+# app=Flask(__name__)
 
 
 
