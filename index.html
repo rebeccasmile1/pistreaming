@@ -33,7 +33,7 @@
 	<table>
 		<tr>
 			<td><input type="button" onClick="captureVideo()" value="可见光"/></td>
-            <td><input type="button" onClick="" value="热成像"/></td>
+            <td><input type="button" onClick="lepton()" value="热成像"/></td>
 
 <!--		<td><input type="button" onClick="btnclick()" value="Button1"/></td>-->
 <!--		<td><input type="button" onClick="captureVideo()" value="Button2"/></td>-->
@@ -81,6 +81,11 @@
             	a.download=name;
             	a.click();
             }
+
+            function lepton(){
+                window.open("{{url_for("picture")}}","_self");
+            }
+
     </script>
 
 </body>
