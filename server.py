@@ -134,14 +134,14 @@ class BroadcastThread(Thread):
                     break
         finally:
             self.converter.stdout.close()
-@app.route('/picture')
-def take():
-    os.system('cd ../pylepton')
-    os.system('./pylepton_capture rechengxiang.jpg')
-    return 'OK!'
+# @app.route('/picture')
+# def take():
+#     os.system('cd ../pylepton')
+#     os.system('./pylepton_capture rechengxiang.jpg')
+#     return 'OK!'
 
 def main():
-    app.run()
+    # app.run()
     print('Initializing camera')
     with picamera.PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
