@@ -22,9 +22,9 @@ from ws4py.server.wsgirefserver import (
 )
 from ws4py.server.wsgiutils import WebSocketWSGIApplication
 
-# from flask import Flask
+from flask import Flask
 #
-# app=Flask(__name__)
+app=Flask(__name__)
 
 
 
@@ -134,11 +134,11 @@ class BroadcastThread(Thread):
                     break
         finally:
             self.converter.stdout.close()
-# @app.route('/picture')
-# def take():
-#     os.system('cd ../pylepton')
-#     os.system('./pylepton_capture rechengxiang.jpg')
-#     return 'OK!'
+@app.route('/picture')
+def take():
+    os.system('cd ../pylepton')
+    os.system('./pylepton_capture rechengxiang.jpg')
+    return 'OK!'
 
 def main():
     # app.run()
