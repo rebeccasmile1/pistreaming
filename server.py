@@ -139,54 +139,113 @@ class BroadcastThread(Thread):
                     break
         finally:
             self.converter.stdout.close()
-# @app.route('/picture')
-# def take():
-#     #必须app.run()才能进来
-#     print('I am in take()!')
-#     os.system('mkdir cyy')
-#     os.system('cd ../pylepton')
-#     os.system('/.//pylepton_capture rechengxiang.jpg')
-#     return 'OK!'
-def capture(flip_v = False, device = "/dev/spidev0.0"):
-  with Lepton3(device) as l:
-    a,_ = l.capture()
-  if flip_v:
-    cv2.flip(a,0,a)
-  print(a)
-  cv2.normalize(a, a, 0, 65535, cv2.NORM_MINMAX)
-  np.right_shift(a, 8, a)
-  return np.uint8(a)
-
-
 @app.route('/picture')
-def pylepton_capture():
-    from optparse import OptionParser
+def take():
+    #必须app.run()才能进来
+    print('I am in take()!')
+    # os.system('mkdir cyy')
+    # os.system('cd ../pylepton')
+    os.system('./pylepton_capture rechengxiang.jpg')
+    return 'OK!'
 
-    usage = "usage: %prog [options] output_file[.format]"
-    parser = OptionParser(usage=usage)
 
-    parser.add_option("-f", "--flip-vertical",
-                      action="store_true", dest="flip_v", default=False,
-                      help="flip the output image vertically")
 
-    parser.add_option("-d", "--device",
-                      dest="device", default="/dev/spidev0.0",
-                      help="specify the spi device node (might be /dev/spidev0.1 on a newer device)")
+# def capture(flip_v = False, device = "/dev/spidev0.0"):
+#   with Lepton3(device) as l:
+#     a,_ = l.capture()
+#   if flip_v:
+#     cv2.flip(a,0,a)
+#   print(a)
+#   cv2.normalize(a, a, 0, 65535, cv2.NORM_MINMAX)
+#   np.right_shift(a, 8, a)
+#   return np.uint8(a)
 
-    (options, args) = parser.parse_args()
 
-    if len(args) < 1:
-        print
-        "You must specify an output filename"
-        sys.exit(1)
+# @app.route('/picture')
+# def pylepton_capture(name):
+#     # from optparse import OptionParser
+#     #
+#     # usage = "usage: %prog [options] output_file[.format]"
+#     # parser = OptionParser(usage=usage)
+#     #
+#     # parser.add_option("-f", "--flip-vertical",
+#     #                   action="store_true", dest="flip_v", default=False,
+#     #                   help="flip the output image vertically")
+#     #
+#     # parser.add_option("-d", "--device",
+#     #                   dest="device", default="/dev/spidev0.0",
+#     #                   help="specify the spi device node (might be /dev/spidev0.1 on a newer device)")
+#     #
+#     # (options, args) = parser.parse_args()
+#     #
+#     # if len(args) < 1:
+#     #     print
+#     #     "You must specify an output filename"
+#     #     sys.exit(1)
+#     # image = capture(flip_v=options.flip_v, device=options.device)
+#     index = 0
+#     image = capture(flip_v=options.flip_v, device=options.device)
+#     cv2.imwrite(args[0], image)
 
-    image = capture(flip_v=options.flip_v, device=options.device)
-    cv2.imwrite(args[0], image)
+# @app.route('/')
+# def main():
+#     # app.run()
+#     print('Initializing camera')
+#
+#     with picamera.PiCamera() as camera:
+#         camera.resolution = (WIDTH, HEIGHT)
+#         camera.framerate = FRAMERATE
+#         camera.vflip = VFLIP # flips image rightside up, as needed
+#         camera.hflip = HFLIP # flips image left-right, as needed
+#         sleep(1) # camera warm-up time
+#         print('Initializing websockets server on port %d' % WS_PORT)
+#         WebSocketWSGIHandler.http_version = '1.1'
+#         websocket_server = make_server(
+#             '', WS_PORT,
+#             server_class=WSGIServer,
+#             handler_class=WebSocketWSGIRequestHandler,
+#             app=WebSocketWSGIApplication(handler_cls=StreamingWebSocket))
+#         websocket_server.initialize_websockets_manager()
+#         websocket_thread = Thread(target=websocket_server.serve_forever)
+#         print('Initializing HTTP server on port %d' % HTTP_PORT)
+#         http_server = StreamingHttpServer()
+#         http_thread = Thread(target=http_server.serve_forever)
+#         print('Initializing broadcast thread')
+#         output = BroadcastOutput(camera)
+#         broadcast_thread = BroadcastThread(output.converter, websocket_server)
+#         print('Starting recording')
+#         camera.start_recording(output, 'yuv')
+#         try:
+#             print('Starting websockets thread')
+#             websocket_thread.start()
+#             print('Starting HTTP server thread')
+#             http_thread.start()
+#             print('Starting broadcast thread')
+#             broadcast_thread.start()
+#             while True:
+#                 camera.wait_recording(1)
+#         except KeyboardInterrupt:
+#             pass
+#         finally:
+#             print('Stopping recording')
+#             camera.stop_recording()
+#             print('Waiting for broadcast thread to finish')
+#             broadcast_thread.join()
+#             print('Shutting down HTTP server')
+#             http_server.shutdown()
+#             print('Shutting down websockets server')
+#             websocket_server.shutdown()
+#             print('Waiting for HTTP server thread to finish')
+#             http_thread.join()
+#             print('Waiting for websockets thread to finish')
+#             websocket_thread.join()
+#
 
-@app.route('/')
+
 def main():
     # app.run()
     print('Initializing camera')
+
     with picamera.PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
         camera.framerate = FRAMERATE
@@ -237,6 +296,6 @@ def main():
 
 
 if __name__ == '__main__':
-    app.run()
-    # main()
+    # app.run()
+    main()
 
