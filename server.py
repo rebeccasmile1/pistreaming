@@ -140,7 +140,7 @@ def take():
     print('I am in take()!')
     os.system('mkdir cyy')
     os.system('cd ../pylepton')
-    os.system('./pylepton_capture rechengxiang.jpg')
+    os.system('/.//pylepton_capture rechengxiang.jpg')
     return 'OK!'
 
 def main():
