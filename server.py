@@ -144,7 +144,7 @@ def take():
     return 'OK!'
 
 def main():
-    # app.run()
+    app.run()
     print('Initializing camera')
     with picamera.PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
