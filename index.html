@@ -85,9 +85,11 @@
 
 
     </script>
-	<script>
+	<script type="text/application">
 		 function lepton(){
-         	window.open("{{url_for("picture")}}","_self");
+		    window.location.reload('/picture.html');
+<!--         	window.location.reload("{{url_for("picture")}}","_self");-->
+
          }
 	</script>
 
