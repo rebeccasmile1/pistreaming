@@ -136,11 +136,11 @@ class BroadcastThread(Thread):
             self.converter.stdout.close()
 @app.route('/picture')
 def take():
-    #我无法知道是不是真的进来了
+    #必须app.run()才能进来
     print('I am in take()!')
     os.system('mkdir cyy')
-    # os.system('cd ../pylepton')
-    # os.system('./pylepton_capture rechengxiang.jpg')
+    os.system('cd ../pylepton')
+    os.system('./pylepton_capture rechengxiang.jpg')
     return 'OK!'
 
 def main():
