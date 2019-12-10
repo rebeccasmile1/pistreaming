@@ -30,7 +30,7 @@ from ws4py.server.wsgiutils import WebSocketWSGIApplication
 
 
 import requests
-from flask import Flask
+from flask import Flask,request,redirect
 #
 app=Flask(__name__)
 
@@ -256,9 +256,9 @@ def capture(flip_v = False, device = "/dev/spidev0.0"):
     np.right_shift(a, 8, a)
     return np.uint8(a)
 
-
+index=1
 # def pylepton_capture(name):
-@app.route('/picture')
+@app.route('/picture',methods=['GET','POST'])
 def pylepton_capture():
     # from optparse import OptionParser
     #
@@ -285,8 +285,12 @@ def pylepton_capture():
     # image = capture()
     # index=1
     # cv2.imwrite('image'+index+'.jpg', image)
-    index=1
-    os.system("./pylepton_capture 'img.jpg")
+
+    if request.method=='POST':
+        return redirect('/index')
+    global index
+    # cmd=''
+    os.system("./pylepton_capture 'img'+%d+'.jpg'"%(index))
 
 @app.route('/')
 def main():
