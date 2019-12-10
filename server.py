@@ -30,7 +30,7 @@ from ws4py.server.wsgiutils import WebSocketWSGIApplication
 
 
 import requests
-from flask import Flask,request,redirect
+from flask import Flask,request,redirect,url_for,render_template
 #
 app=Flask(__name__)
 
@@ -285,16 +285,17 @@ def pylepton_capture():
     # image = capture()
     # index=1
     # cv2.imwrite('image'+index+'.jpg', image)
-
     if request.method=='POST':
         return redirect('/index')
     global index
-    # cmd=''
-    os.system("./pylepton_capture 'img'+%d+'.jpg'"%(index))
+    os.system("./pylepton_capture 'img.jpg'")
+
+    # os.system("./pylepton_capture 'img'+%d+'.jpg'"%(index))
 
 @app.route('/')
 def main():
     # app.run()
+    redirect(url_for("index"))
     print('Initializing camera')
 
     with picamera.PiCamera() as camera:
