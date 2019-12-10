@@ -28,6 +28,8 @@ from ws4py.server.wsgirefserver import (
 )
 from ws4py.server.wsgiutils import WebSocketWSGIApplication
 
+
+import requests
 from flask import Flask
 #
 app=Flask(__name__)
@@ -143,13 +145,13 @@ class BroadcastThread(Thread):
                     break
         finally:
             self.converter.stdout.close()
-@app.route('/picture')
-def take():
-    print('I am in take()!')
-    # os.system('mkdir cyy')
-    # os.system('cd ../pylepton')
-    os.system('./pylepton_capture rechengxiang.jpg')
-    return 'OK!'
+
+# @app.route('/picture')
+# def take():
+#     print('I am in take()!')
+#     # os.system('mkdir cyy')
+#     os.system('./pylepton_capture rechengxiang.jpg')
+#     return 'OK!'
 
 
 
@@ -162,8 +164,8 @@ def take():
 #   cv2.normalize(a, a, 0, 65535, cv2.NORM_MINMAX)
 #   np.right_shift(a, 8, a)
 #   return np.uint8(a)
-
-
+#
+#
 # @app.route('/picture')
 # def pylepton_capture(name):
 #     # from optparse import OptionParser
@@ -244,6 +246,46 @@ def take():
 #             websocket_thread.join()
 #
 
+def capture(flip_v = False, device = "/dev/spidev0.0"):
+    with Lepton3(device) as l:
+        a,_ = l.capture()
+    if flip_v:
+        cv2.flip(a,0,a)
+    print(a)
+    cv2.normalize(a, a, 0, 65535, cv2.NORM_MINMAX)
+    np.right_shift(a, 8, a)
+    return np.uint8(a)
+
+
+# def pylepton_capture(name):
+
+def pylepton_capture():
+    # from optparse import OptionParser
+    #
+    # usage = "usage: %prog [options] output_file[.format]"
+    # parser = OptionParser(usage=usage)
+    #
+    # parser.add_option("-f", "--flip-vertical",
+    #                   action="store_true", dest="flip_v", default=False,
+    #                   help="flip the output image vertically")
+    #
+    # parser.add_option("-d", "--device",
+    #                   dest="device", default="/dev/spidev0.0",
+    #                   help="specify the spi device node (might be /dev/spidev0.1 on a newer device)")
+    #
+    # (options, args) = parser.parse_args()
+    #
+    # if len(args) < 1:
+    #     print
+    #     "You must specify an output filename"
+    #     sys.exit(1)
+    # image = capture(flip_v=options.flip_v, device=options.device)
+    # cv2.imwrite(args[0], image)
+
+    image = capture()
+    index=1
+    cv2.imwrite('image'+index+'.jpg', image)
+
 
 def main():
     # app.run()
@@ -285,6 +327,11 @@ def main():
             broadcast_thread.start()
             while True:
                 camera.wait_recording(1)
+
+
+
+                r=requests.get("http://172.20.10.3:8082/html.index")
+                print(r.status_code)
         except KeyboardInterrupt:
             pass
         finally:
@@ -310,5 +357,3 @@ def main():
 if __name__ == '__main__':
     # app.run()
     main()
-
-
