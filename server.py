@@ -282,9 +282,11 @@ def pylepton_capture():
     # image = capture(flip_v=options.flip_v, device=options.device)
     # cv2.imwrite(args[0], image)
 
-    image = capture()
+    # image = capture()
+    # index=1
+    # cv2.imwrite('image'+index+'.jpg', image)
     index=1
-    cv2.imwrite('image'+index+'.jpg', image)
+    os.system("./pylepton_capture 'img.jpg")
 
 @app.route('/')
 def main():
