@@ -265,9 +265,9 @@ def main():
         print('Initializing HTTP server on port %d' % HTTP_PORT)
 
 
-        # http_server = StreamingHttpServer()
-        # http_thread = Thread(target=http_server.serve_forever)
-        http_thread = Thread(target=HTTPServer().serve_forever)
+        http_server = StreamingHttpServer()
+        http_thread = Thread(target=http_server.serve_forever)
+        # http_thread = Thread(target=HTTPServer().serve_forever)
 
         print('Initializing broadcast thread')
         output = BroadcastOutput(camera)
@@ -293,9 +293,8 @@ def main():
             print('Shutting down HTTP server')
 
 
-            # http_server.shutdown()
-
-            HTTPServer().shutdown()
+            http_server.shutdown()
+            # HTTPServer().shutdown()
 
 
             print('Shutting down websockets server')
