@@ -258,7 +258,7 @@ def capture(flip_v = False, device = "/dev/spidev0.0"):
 
 
 # def pylepton_capture(name):
-
+@app.route('/picture')
 def pylepton_capture():
     # from optparse import OptionParser
     #
@@ -286,7 +286,7 @@ def pylepton_capture():
     index=1
     cv2.imwrite('image'+index+'.jpg', image)
 
-
+@app.route('/')
 def main():
     # app.run()
     print('Initializing camera')
@@ -330,8 +330,8 @@ def main():
 
 
 
-                r=requests.get("http://172.20.10.3:8082/html.index")
-                print(r.status_code)
+                # r=requests.get("http://172.20.10.3:8082/html.index")
+                # print(r.status_code)
         except KeyboardInterrupt:
             pass
         finally:
@@ -355,5 +355,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # app.run()
-    main()
+    app.run()
+    # main()
