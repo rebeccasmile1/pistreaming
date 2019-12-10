@@ -263,8 +263,12 @@ def main():
         websocket_server.initialize_websockets_manager()
         websocket_thread = Thread(target=websocket_server.serve_forever)
         print('Initializing HTTP server on port %d' % HTTP_PORT)
-        http_server = StreamingHttpServer()
-        http_thread = Thread(target=http_server.serve_forever)
+
+
+        # http_server = StreamingHttpServer()
+        # http_thread = Thread(target=http_server.serve_forever)
+        http_thread = Thread(target=HTTPServer().serve_forever)
+
         print('Initializing broadcast thread')
         output = BroadcastOutput(camera)
         broadcast_thread = BroadcastThread(output.converter, websocket_server)
@@ -287,7 +291,13 @@ def main():
             print('Waiting for broadcast thread to finish')
             broadcast_thread.join()
             print('Shutting down HTTP server')
-            http_server.shutdown()
+
+
+            # http_server.shutdown()
+
+            HTTPServer().shutdown()
+
+            
             print('Shutting down websockets server')
             websocket_server.shutdown()
             print('Waiting for HTTP server thread to finish')
