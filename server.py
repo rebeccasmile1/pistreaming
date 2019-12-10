@@ -83,8 +83,8 @@ class StreamingHttpHandler(BaseHTTPRequestHandler):
         if self.command == 'GET':
             self.wfile.write(content)
 
-__metaclass__ = type
-class StreamingHttpServer(HTTPServer):
+# __metaclass__ = type
+class StreamingHttpServer(HTTPServer,object):
     def __init__(self):
         super(StreamingHttpServer, self).__init__(
                 ('', HTTP_PORT), StreamingHttpHandler)
@@ -297,7 +297,7 @@ def main():
 
             HTTPServer().shutdown()
 
-            
+
             print('Shutting down websockets server')
             websocket_server.shutdown()
             print('Waiting for HTTP server thread to finish')
