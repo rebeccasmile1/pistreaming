@@ -33,7 +33,7 @@ from flask import Flask
 app=Flask(__name__)
 
 
-__meataclass__=type
+# __meataclass__=type
 
 ###########################################
 # CONFIGURATION
@@ -83,7 +83,7 @@ class StreamingHttpHandler(BaseHTTPRequestHandler):
         if self.command == 'GET':
             self.wfile.write(content)
 
-
+__metaclass__ = type
 class StreamingHttpServer(HTTPServer):
     def __init__(self):
         super(StreamingHttpServer, self).__init__(
