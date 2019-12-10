@@ -14,8 +14,8 @@ from string import Template
 from struct import Struct
 from threading import Thread
 from time import sleep, time
-from http.server import HTTPServer, BaseHTTPRequestHandler
-# from BaseHTTPServer import HTTPServer,BaseHTTPRequestHandler
+# from http.server import HTTPServer, BaseHTTPRequestHandler
+from BaseHTTPServer import HTTPServer,BaseHTTPRequestHandler
 
 from wsgiref.simple_server import make_server
 
