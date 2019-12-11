@@ -397,8 +397,8 @@ def main():
             http_thread.start()
 
 
-            print('Starting simple HTTP server thread')
-            simple_http_thread.start()
+            # print('Starting simple HTTP server thread')
+            # simple_http_thread.start()
 
 
 
@@ -422,8 +422,8 @@ def main():
             broadcast_thread.join()
 
 
-            print('Shutting down simple HTTP server')
-            simple_http_server.shutdown()
+            # print('Shutting down simple HTTP server')
+            # simple_http_server.shutdown()
 
 
 
@@ -433,8 +433,8 @@ def main():
             websocket_server.shutdown()
 
 
-            print('Waiting for simple HTTP server thread to finish')
-            simple_http_thread.join()
+            # print('Waiting for simple HTTP server thread to finish')
+            # simple_http_thread.join()
 
 
 
