@@ -319,6 +319,15 @@ def main():
         http_thread = Thread(target=http_server.serve_forever)
         # http_thread = Thread(target=HTTPServer().serve_forever)
 
+        print('Initializing simple HTTP server on port %d' % HTTP_PORT)
+        simple_http_server = StreamingHttpServer()
+        simple_http_thread = Thread(target=simple_http_server.serve_forever)
+
+
+
+
+
+
         print('Initializing broadcast thread')
         output = BroadcastOutput(camera)
         broadcast_thread = BroadcastThread(output.converter, websocket_server)
@@ -329,6 +338,14 @@ def main():
             websocket_thread.start()
             print('Starting HTTP server thread')
             http_thread.start()
+
+
+            print('Starting simple HTTP server thread')
+            simple_http_thread.start()
+
+
+
+
             print('Starting broadcast thread')
             broadcast_thread.start()
             while True:
@@ -338,12 +355,7 @@ def main():
                 if func=='pylepton_capture':
                     pylepton_capture()
 
-                # r=requests.get('index.html',params=func)
-                # if (r.content=='pylepton_capture'):
-                #     pylepton_capture()
 
-                # r=requests.get("http://172.20.10.3:8082/html.index")
-                # print(r.status_code)
         except KeyboardInterrupt:
             pass
         finally:
@@ -351,15 +363,25 @@ def main():
             camera.stop_recording()
             print('Waiting for broadcast thread to finish')
             broadcast_thread.join()
+
+
+            print('Shutting down simple HTTP server')
+            simple_http_server.shutdown()
+
+
+
             print('Shutting down HTTP server')
-
-
             http_server.shutdown()
-            # HTTPServer().shutdown()
-
-
             print('Shutting down websockets server')
             websocket_server.shutdown()
+
+
+            print('Waiting for simple HTTP server thread to finish')
+            simple_http_thread.join()
+
+
+
+
             print('Waiting for HTTP server thread to finish')
             http_thread.join()
             print('Waiting for websockets thread to finish')
