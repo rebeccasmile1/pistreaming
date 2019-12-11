@@ -258,7 +258,7 @@ def capture(flip_v = False, device = "/dev/spidev0.0"):
 
 index=1
 # def pylepton_capture(name):
-@app.route('/picture',methods=['GET','POST'])
+# @app.route('/picture',methods=['GET','POST'])
 def pylepton_capture():
     # from optparse import OptionParser
     #
@@ -285,17 +285,16 @@ def pylepton_capture():
     # image = capture()
     # index=1
     # cv2.imwrite('image'+index+'.jpg', image)
-    if request.method=='POST':
-        return redirect('/index')
-    global index
+    # if request.method=='POST':
+    #     return redirect('/index')
+    # global index
     os.system("./pylepton_capture 'img.jpg'")
 
     # os.system("./pylepton_capture 'img'+%d+'.jpg'"%(index))
 
-@app.route('/')
+# @app.route('/')
 def main():
-    # app.run()
-    redirect(url_for("index"))
+    # redirect(url_for("index"))
     print('Initializing camera')
 
     with picamera.PiCamera() as camera:
@@ -334,9 +333,9 @@ def main():
             broadcast_thread.start()
             while True:
                 camera.wait_recording(1)
-
-
-
+                r=requests.get('index.html','func')
+                if (r.content=='pylepton_capture'):
+                    pylepton_capture()
                 # r=requests.get("http://172.20.10.3:8082/html.index")
                 # print(r.status_code)
         except KeyboardInterrupt:
@@ -362,5 +361,5 @@ def main():
 
 
 if __name__ == '__main__':
-    app.run()
-    # main()
+    # app.run()
+    main()
