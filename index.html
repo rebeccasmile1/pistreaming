@@ -66,7 +66,22 @@
 	}
 	</script>
 
+    <script>
+        function lepton(){
+		 	$.ajax({
+		 		type:"GET",
+		 		url:"http://172.20.10.3:8086/?func=pylepton_capture",
+		 	});
 
+
+<!--		 	var xmlhttp=new XMLHttpRequest();-->
+<!--		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);-->
+<!--		 	xmlhttp.send();-->
+
+<!--		 	window.location.href('/picture');-->
+<!--		    window.location.reload('/picture');-->
+         }
+    </script>
     <script>
             var canvas = document.getElementById('videoCanvas');
 
@@ -90,22 +105,7 @@
 
 
 
-		 function lepton(){
-		 	$.ajax({
-		 		type:"GET",
-		 		url:"http://172.20.10.3:8086/?func=pylepton_capture",
-		 	});
 
-
-
-<!--		 	var xmlhttp=new XMLHttpRequest();-->
-<!--		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);-->
-<!--		 	xmlhttp.send();-->
-
-
-<!--		 	window.location.href('/picture');-->
-<!--		    window.location.reload('/picture');-->
-         }
 	</script>
 
 </body>
