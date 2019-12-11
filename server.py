@@ -194,7 +194,8 @@ class BroadcastThread(Thread):
         try:
             while True:
                 # buf = self.converter.stdout.read1(32768)
-                buf = self.converter.stdout.read(32768)
+                # buf = self.converter.stdout.read(32768)
+                buf = self.converter.stdout.readline(32768)
 
                 if buf:
                     self.websocket_server.manager.broadcast(buf, binary=True)
