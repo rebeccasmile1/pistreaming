@@ -16,6 +16,24 @@
 			height: ${HEIGHT}px;
 		}
 	</style>
+	<script>
+        function lepton(){
+		 	$.ajax({
+		 		type:"GET",
+		 		url:"http://172.20.10.3:8082/?func=pylepton_capture"
+<!--		 		url:"http://172.20.10.3:8086/?func=pylepton_capture",-->
+
+		 	});
+
+
+<!--		 	var xmlhttp=new XMLHttpRequest();-->
+<!--		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);-->
+<!--		 	xmlhttp.send();-->
+
+<!--		 	window.location.href('/picture');-->
+<!--		    window.location.reload('/picture');-->
+         }
+    </script>
 </head>
 <body>
 	<!-- The Canvas size specified here is the "initial" internal resolution. jsmpeg will
@@ -45,24 +63,7 @@
 
 
 
-    <script>
-        function lepton(){
-		 	$.ajax({
-		 		type:"GET",
-		 		url:"http://172.20.10.3:8082/?func=pylepton_capture"
-<!--		 		url:"http://172.20.10.3:8086/?func=pylepton_capture",-->
 
-		 	});
-
-
-<!--		 	var xmlhttp=new XMLHttpRequest();-->
-<!--		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);-->
-<!--		 	xmlhttp.send();-->
-
-<!--		 	window.location.href('/picture');-->
-<!--		    window.location.reload('/picture');-->
-         }
-    </script>
 	<script type="text/javascript" src="jsmpg.js"></script>
 	<script type="text/javascript">
 		// Show loading notice
