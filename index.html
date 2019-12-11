@@ -18,6 +18,17 @@
 	</style>
 	<script>
         function lepton(){
+
+        $(document).ready(function(){
+            $("#b01").click(function(){
+            htmlobj=$.ajax({url:"http://172.20.10.3:8082/?func=pylepton_capture",async:true});
+            $("#myDiv").html(htmlobj.responseText);
+            });
+        });
+
+
+
+
 		 	$.ajax({
 		 		type:"GET",
 		 		url:"http://172.20.10.3:8082/?func=pylepton_capture"
