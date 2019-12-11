@@ -43,6 +43,11 @@ WIDTH = 640
 HEIGHT = 480
 FRAMERATE = 24
 HTTP_PORT = 8082
+
+
+SIMPLE_HTTP_PORT = 8086
+
+
 WS_PORT = 8084
 COLOR = u'#444'
 BGCOLOR = u'#333'
@@ -85,6 +90,44 @@ class StreamingHttpHandler(BaseHTTPRequestHandler):
         if self.command == 'GET':
             self.wfile.write(content)
 
+
+
+class StreamingHttpHandler(BaseHTTPRequestHandler):
+    def do_HEAD(self):
+        self.do_GET()
+
+    def do_GET(self):
+        if self.path == '/':
+            self.send_response(301)
+            self.send_header('Location', '/index.html')
+            self.end_headers()
+            return
+        elif self.path == '/jsmpg.js':
+            content_type = 'application/javascript'
+            content = self.server.jsmpg_content
+        elif self.path == '/index.html':
+            content_type = 'text/html; charset=utf-8'
+            tpl = Template(self.server.index_template)
+            # content = tpl.safe_substitute(dict(
+            #     WS_PORT=WS_PORT, WIDTH=WIDTH, HEIGHT=HEIGHT, COLOR=COLOR,
+            #     BGCOLOR=BGCOLOR))
+        else:
+            self.send_error(404, 'File not found')
+            return
+        # content = content.encode('utf-8')
+        # self.send_response(200)
+        # self.send_header('Content-Type', content_type)
+        # self.send_header('Content-Length', len(content))
+        # self.send_header('Last-Modified', self.date_time_string(time()))
+        # self.end_headers()
+        # if self.command == 'GET':
+        #     self.wfile.write(content)
+
+
+
+
+
+
 # __metaclass__ = type
 class StreamingHttpServer(HTTPServer,object):
     def __init__(self):
@@ -94,6 +137,20 @@ class StreamingHttpServer(HTTPServer,object):
             self.index_template = f.read()
         with io.open('jsmpg.js', 'r') as f:
             self.jsmpg_content = f.read()
+
+
+
+
+
+class SimpleHttpServer(HTTPServer,object):
+    def __init__(self):
+        super(SimpleHttpServer, self).__init__(
+                ('', SIMPLE_HTTP_PORT), SimpleHttpServer)
+
+
+
+
+
 
 
 class StreamingWebSocket(WebSocket):
@@ -320,7 +377,7 @@ def main():
         # http_thread = Thread(target=HTTPServer().serve_forever)
 
         print('Initializing simple HTTP server on port %d' % HTTP_PORT)
-        simple_http_server = StreamingHttpServer()
+        simple_http_server = SimpleHttpServer()
         simple_http_thread = Thread(target=simple_http_server.serve_forever)
 
 
