@@ -407,10 +407,10 @@ def main():
             broadcast_thread.start()
             while True:
                 camera.wait_recording(1)
-                requestArgs=request.args
-                func=requestArgs.get('func')
-                if func=='pylepton_capture':
-                    pylepton_capture()
+                # requestArgs=request.args
+                # func=requestArgs.get('func')
+                # if func=='pylepton_capture':
+                    # pylepton_capture()
 
 
         except KeyboardInterrupt:
