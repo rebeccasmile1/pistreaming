@@ -319,7 +319,7 @@ index=1
 # @app.route('/picture',methods=['GET','POST'])
 def pylepton_capture():
     # global index
-    os.system("./pylepton_capture 'img.jpg'")
+    os.system("./pylepton_capture  img.jpg")
 
     # os.system("./pylepton_capture 'img'+%d+'.jpg'"%(index))
 
