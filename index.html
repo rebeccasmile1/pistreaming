@@ -16,13 +16,12 @@
 			height: ${HEIGHT}px;
 		}
 	</style>
-	<script>
+	<script type="text/javascript" src="/jquery/jquery.js">
         function lepton(){
 
         $(document).ready(function(){
-            $("#b01").click(function(){
+            $("#热成像").click(function(){
             htmlobj=$.ajax({url:"http://172.20.10.3:8082/?func=pylepton_capture",async:true});
-            $("#myDiv").html(htmlobj.responseText);
             });
         });
 
