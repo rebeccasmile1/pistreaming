@@ -91,9 +91,16 @@
 
 
 		 function lepton(){
-		 	var xmlhttp=new XMLHttpRequest();
-		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);
-		 	xmlhttp.send();
+		 	$.ajax({
+		 		type:"GET",
+		 		url:"http://172.20.10.3:8082/index.html?func=pylepton_capture",
+		 	});
+
+
+
+<!--		 	var xmlhttp=new XMLHttpRequest();-->
+<!--		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);-->
+<!--		 	xmlhttp.send();-->
 
 
 <!--		 	window.location.href('/picture');-->

@@ -333,9 +333,15 @@ def main():
             broadcast_thread.start()
             while True:
                 camera.wait_recording(1)
-                r=requests.get('index.html','func')
-                if (r.content=='pylepton_capture'):
+                requestArgs=request.values
+                func=requestArgs.get('func')
+                if func=='pylepton_capture':
                     pylepton_capture()
+
+                # r=requests.get('index.html',params=func)
+                # if (r.content=='pylepton_capture'):
+                #     pylepton_capture()
+
                 # r=requests.get("http://172.20.10.3:8082/html.index")
                 # print(r.status_code)
         except KeyboardInterrupt:
