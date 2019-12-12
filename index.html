@@ -21,6 +21,37 @@
 
 </head>
 <body>
+
+
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+        function lepton(){
+
+<!--        $(document).ready(function(){-->
+<!--            $("#热成像").click(function(){-->
+<!--            htmlobj=$.ajax({url:"http://172.20.10.3:8082/index.html/?func=pylepton_capture",async:true});-->
+<!--            });-->
+<!--        });-->
+
+		 	$.ajax({
+		 		type:"GET",
+		 		url:"http://172.20.10.3:8082/index.html/?func=pylepton_capture";
+
+		 	});
+
+
+<!--		 	var xmlhttp=new XMLHttpRequest();-->
+<!--		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);-->
+<!--		 	xmlhttp.send();-->
+
+<!--		 	window.location.href('/picture');-->
+<!--		    window.location.reload('/picture');-->
+         }
+    </script>
+
+
+
+
 	<!-- The Canvas size specified here is the "initial" internal resolution. jsmpeg will
 		change this internal resolution to whatever the source provides. The size the
 		canvas is displayed on the website is dictated by the CSS style.
@@ -48,31 +79,31 @@
 
 
 
-	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-	<script type="text/javascript">
-        function lepton(){
+<!--	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>-->
+<!--	<script type="text/javascript">-->
+<!--        function lepton(){-->
 
-<!--        $(document).ready(function(){-->
-<!--            $("#热成像").click(function(){-->
-<!--            htmlobj=$.ajax({url:"http://172.20.10.3:8082/index.html/?func=pylepton_capture",async:true});-->
-<!--            });-->
-<!--        });-->
+<!--&lt;!&ndash;        $(document).ready(function(){&ndash;&gt;-->
+<!--&lt;!&ndash;            $("#热成像").click(function(){&ndash;&gt;-->
+<!--&lt;!&ndash;            htmlobj=$.ajax({url:"http://172.20.10.3:8082/index.html/?func=pylepton_capture",async:true});&ndash;&gt;-->
+<!--&lt;!&ndash;            });&ndash;&gt;-->
+<!--&lt;!&ndash;        });&ndash;&gt;-->
 
-		 	$.ajax({
-		 		type:"GET",
-		 		url:"http://172.20.10.3:8082/index.html/?func=pylepton_capture";
+<!--		 	$.ajax({-->
+<!--		 		type:"GET",-->
+<!--		 		url:"http://172.20.10.3:8082/index.html/?func=pylepton_capture";-->
 
-		 	});
+<!--		 	});-->
 
 
-<!--		 	var xmlhttp=new XMLHttpRequest();-->
-<!--		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);-->
-<!--		 	xmlhttp.send();-->
+<!--&lt;!&ndash;		 	var xmlhttp=new XMLHttpRequest();&ndash;&gt;-->
+<!--&lt;!&ndash;		 	xmlhttp.open("GET","/index.html?func=pylepton_capture",true);&ndash;&gt;-->
+<!--&lt;!&ndash;		 	xmlhttp.send();&ndash;&gt;-->
 
-<!--		 	window.location.href('/picture');-->
-<!--		    window.location.reload('/picture');-->
-         }
-    </script>
+<!--&lt;!&ndash;		 	window.location.href('/picture');&ndash;&gt;-->
+<!--&lt;!&ndash;		    window.location.reload('/picture');&ndash;&gt;-->
+<!--         }-->
+<!--    </script>-->
 	<script type="text/javascript" src="jsmpg.js"></script>
 	<script type="text/javascript">
 		// Show loading notice
